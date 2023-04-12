@@ -1,0 +1,17 @@
+{
+  "color-primary-100": "#E6F7FF",
+  "color-primary-200": "#BAE7FF",
+  "color-primary-300": "#91D5FF",
+  "color-primary-400": "#69C0FF",
+  "color-primary-500": "#1890FF",
+  "color-primary-600": "#096DD9",
+  "color-primary-700": "#0050B3",
+  "color-primary-800": "#003A8C",
+  "color-primary-900": "#002766",
+  "color-primary-transparent-100": "rgba(24, 144, 255, 0.08)",
+  "color-primary-transparent-200": "rgba(24, 144, 255, 0.16)",
+  "color-primary-transparent-300": "rgba(24, 144, 255, 0.24)",
+  "color-primary-transparent-400": "rgba(24, 144, 255, 0.32)",
+  "color-primary-transparent-500": "rgba(24, 144, 255, 0.4)",
+  "color-primary-transparent-600": "rgba(24, 144, 255, 0.48)"
+}
