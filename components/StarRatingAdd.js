@@ -3,7 +3,6 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {Card, Text, Icon, Input, Button} from '@ui-kitten/components';
 import {useUserContext} from "../context/usercontext";
 import {addRatingToRecipe} from "../api/recipe";
-import {toast} from "react-toastify";
 import {useNavigation} from "@react-navigation/native";
 
 const StarRating = ({recipeID}) => {
@@ -25,7 +24,7 @@ const StarRating = ({recipeID}) => {
             }, user.token).then(r => {
                 console.log(r)
                 if (r.success){
-                    toast(r.data)
+                    alert(r.data)
                 }
             })
         }

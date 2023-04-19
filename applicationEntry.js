@@ -4,8 +4,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {UserProvider, useUserContext} from './context/usercontext';
-import {ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 // import screens
 import HomeScreen from './screens/HomeScreen';
@@ -55,7 +53,7 @@ const StackNavigator = () => {
 const HomeStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen}/>
+            <Stack.Screen name="Cookalicious" component={HomeScreen}/>
             <Stack.Screen name="AddNewRecipe" component={AddNewRecipe}/>
             <Stack.Screen name="RecipeDetails" component={RecipeDetailScreen}/>
         </Stack.Navigator>
@@ -113,7 +111,6 @@ export default function ApplicationEntry() {
         >
             <NavigationContainer>
                 {!authenticated ? <StackNavigator/> : <TabNavigator/>}
-                <ToastContainer/>
             </NavigationContainer>
         </ApplicationProvider>
     );

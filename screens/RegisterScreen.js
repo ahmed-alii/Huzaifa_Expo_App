@@ -15,7 +15,7 @@ export default function RegisterScreen({navigation}) {
         try {
             const data = await registerUser(values.name, values.email, values.password);
             console.log(data)
-            toast(data.message)
+            alert(data.message)
             if (data.success){
                 login(values.email, values.password)
             }
@@ -31,9 +31,9 @@ export default function RegisterScreen({navigation}) {
     });
 
     const initialValues = {
-        name: 'ahmed',
-        email: `ahmed${Math.floor(Math.random()*100)}@mail.com`,
-        password: '123123123'
+        name: '',
+        email: "",
+        password: ''
     }
     return (
         <View style={styles.container}>

@@ -1,10 +1,9 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {toast} from 'react-toastify';
 import {useUserContext} from '../context/usercontext';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View, Image} from 'react-native';
-
+import logo from "../assets/logo.png"
 
 const LoginScreen = ({navigation}) => {
 
@@ -17,8 +16,8 @@ const LoginScreen = ({navigation}) => {
     });
 
     const initialValues = {
-        email: "admin@admin.com",
-        password: "123123123"
+        email: "",
+        password: ""
     }
 
     function onSubmit(values) {
@@ -31,7 +30,7 @@ const LoginScreen = ({navigation}) => {
             })
             .catch((error) => {
                 console.error(error);
-                toast.error(error.message || 'An error occurred');
+                alert(error.message || 'An error occurred');
             });
     }
 
@@ -39,8 +38,8 @@ const LoginScreen = ({navigation}) => {
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20}}>
             <Image
-                source={{uri: 'https://via.placeholder.com/150x150.png?text=Logo'}}
-                style={{width: 150, height: 150, marginBottom: 50}}
+                source={logo}
+                style={{width: 280, height: 280, marginBottom: 0}}
             />
             <Text style={styles.title}>Login your account</Text>
             <Formik

@@ -41,6 +41,16 @@ export const getAllRecipes = async (authToken) => {
         console.error(error);
     }
 };
+export const getRandomRecipes = async (authToken) => {
+    try {
+        const response = await axios.get(BASE_URL+'get/recipesRandom', {
+            headers: { Authorization: `Bearer ${authToken}` },
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 // Search recipes by ingredients
 export const searchRecipeByIngredients = async (query, authToken) => {

@@ -4,7 +4,6 @@ import { Button, Input, Text } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {forgotPassword} from "../api/authentication";
-import {toast} from "react-toastify";
 
 const ResetPasswordSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -16,7 +15,7 @@ export default function ResetPasswordScreen({ navigation }) {
         forgotPassword(values).then(r => {
             console.log(r)
             if (r.success){
-                toast(r.message)
+                alert(r.message)
             }
         })
     };

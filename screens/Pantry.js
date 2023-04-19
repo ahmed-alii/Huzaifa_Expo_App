@@ -5,7 +5,6 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {addItem, delPantryItem, getPantry} from "../api/pantry";
 import {useUserContext} from "../context/usercontext";
-import {toast} from "react-toastify";
 
 const PantrySchema = yup.object().shape({
     title: yup.string().required(),
@@ -57,7 +56,7 @@ const PantryScreen = () => {
        addItem(newPantryItem, user.token).then(r => {
            console.log(r)
            if (r.success){
-               toast(r.data)
+               alert(r.data)
                resetForm();
                GetData()
            }
@@ -69,7 +68,7 @@ const PantryScreen = () => {
         console.log(item)
         delPantryItem(item._id._id, user.token).then(r => {
            if (r.success){
-               toast("Item Deleted")
+               alert("Item Deleted")
                GetData()
            }
         })

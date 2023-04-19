@@ -24,7 +24,7 @@ const ProfileScreen = () => {
     const handlePasswordUpdate = (values, {resetForm}) => {
         changePasswordOfLoggedInUser(values, user.token).then(r => {
             if (r.success){
-                toast(r.message)
+                alert(r.message)
             }
         })
         resetForm();
@@ -44,7 +44,7 @@ const ProfileScreen = () => {
             <Card>
                 <Text category='h1'>{user.name}</Text>
                 <Text>{user.email}</Text>
-                <br/>
+
                 <Formik
                     initialValues={{password: '', newpass: ''}}
                     validationSchema={ProfileSchema}

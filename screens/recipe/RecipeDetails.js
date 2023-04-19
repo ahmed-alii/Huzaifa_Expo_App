@@ -7,7 +7,6 @@ import {useUserContext} from "../../context/usercontext";
 import HTML from 'react-native-render-html';
 import StarRating from "../../components/StarRatingAdd";
 import { IMadeThis} from "../../api/pantry";
-import {toast} from "react-toastify";
 import {addToFavourites} from "../../api/favs";
 
 const RecipeDetailScreen = ({route}) => {
@@ -31,7 +30,7 @@ const RecipeDetailScreen = ({route}) => {
     function handleImadeThis() {
         IMadeThis(recipe._id, user.token).then(r => {
             console.log(r)
-            r.success && toast(r.data)
+            r.success && alert(r.data)
         })
     }
 
@@ -39,7 +38,7 @@ const RecipeDetailScreen = ({route}) => {
         addToFavourites(recipe._id, user.token).then(r => {
             console.log(r)
             if (r.success){
-                toast(r.data)
+                alert(r.data)
             }
         })
     }
@@ -69,7 +68,7 @@ const RecipeDetailScreen = ({route}) => {
                     <Button onPress={addToFav}>
                         Add to Favourites
                     </Button>
-                    <br/>
+
                     <Button onPress={handleImadeThis}>
                         I made this!
                     </Button>

@@ -1,30 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
-import {Button, Text, Card} from '@ui-kitten/components';
-import {useNavigation} from '@react-navigation/native';
-import {getAllRecipes} from "../api/recipe";
-import {useUserContext} from "../context/usercontext";
-import RecipeCard from "../components/RecipeCard";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, ScrollView, RefreshControl } from 'react-native';
+import { Button, Text, Card } from '@ui-kitten/components';
+import { useNavigation } from '@react-navigation/native';
+import {getAllRecipes, getRandomRecipes} from '../api/recipe';
+import { useUserContext } from '../context/usercontext';
+import RecipeCard from '../components/RecipeCard';
 
 export default function HomeScreen() {
     const navigation = useNavigation();
-    const [recipes, setRecipes] = useState(null)
-    const {user} = useUserContext();
+    const [recipes, setRecipes] = useState(null);
+    const [isRefreshing, setIsRefreshing] = useState(false);
+    const { user } = useUserContext();
 
     const handleAddRecipePress = () => {
         navigation.navigate('AddNewRecipe');
     };
 
-    useEffect(() => {
-        if (user){
-            getAllRecipes(user.token).then(e => {
-               if (e.success){
-                   setRecipes(e.data)
-               }
-            })
-        }
-    }, [user])
+    const handleRefresh = () => {
+        setIsRefreshing(true);
+        getRandomRecipes(user.token).then((e) => {
+            if (e.success) {
+                setRecipes(e.data);
+            }
+            setIsRefreshing(false);
+        });
+    };
 
+    useEffect(() => {
+        if (user) {
+            getRandomRecipes(user.token).then((e) => {
+                if (e.success) {
+                    setRecipes(e.data);
+                }
+            });
+        }
+    }, [user]);
 
     return (
         <View style={styles.container}>
@@ -34,10 +44,16 @@ export default function HomeScreen() {
                 </Text>
                 <Button onPress={handleAddRecipePress}>Add New Recipe</Button>
             </View>
-            <ScrollView style={styles.scrollContainer}>
-                {recipes && recipes.map((recipe, key) => (
-                    <RecipeCard recipe={recipe} key={key}/>
-                ))}
+            <ScrollView
+                style={styles.scrollContainer}
+                refreshControl={
+                    <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
+                }
+            >
+                {recipes &&
+                    recipes.map((recipe, key) => (
+                        <RecipeCard recipe={recipe} key={key} />
+                    ))}
             </ScrollView>
         </View>
     );

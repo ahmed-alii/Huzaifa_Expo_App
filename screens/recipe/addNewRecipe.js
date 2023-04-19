@@ -90,6 +90,7 @@ const AddNewRecipe = () => {
         addNewRecipe(values, user.token).then(r => {
             console.log(r)
             setSubmitting(false)
+            alert("Recipe added successfully!")
         })
     };
 
