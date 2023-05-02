@@ -16,6 +16,8 @@ const StarRating = ({recipeID}) => {
 
         if (rating === 0) {
             window.alert("Please add star rating")
+        } else if (comment === "") {
+            window.alert("Please add a comment")
         } else {
             addRatingToRecipe({
                 recipeId: recipeID,
@@ -23,7 +25,7 @@ const StarRating = ({recipeID}) => {
                 comment: comment
             }, user.token).then(r => {
                 console.log(r)
-                if (r.success){
+                if (r.success) {
                     alert(r.data)
                 }
             })
